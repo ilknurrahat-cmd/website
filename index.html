@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Dünyası | 6. Sınıf TYMM Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-brand-500 selection:text-white min-h-screen flex flex-col">
+
+    <!-- TOP NOTIFICATION BANNER -->
+    <div class="bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-800 text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
+        <span class="bg-amber-400 text-slate-900 text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full">Yeni Müfredat</span>
+        <span>2026-2027 Türkiye Yüzyılı Maarif Modeli (TYMM) Uyumlu 6. Sınıf Ders Portalına Hoş Geldiniz!</span>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid font-bold text-2xl">π</i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-black tracking-tight text-slate-900 block leading-tight">Matematik<span class="text-brand-600">Atölyesi</span></span>
+                        <span class="text-xs text-slate-500 font-medium">Ahmet Hoca | 6. Sınıf TYMM Portal</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden lg:flex items-center gap-1 font-medium text-slate-600 text-sm">
+                    <a href="#tymm-mufredat" class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-brand-50/50 transition">TYMM Müfredat</a>
+                    <a href="#videolar" class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-brand-50/50 transition">Konu Anlatımları</a>
+                    <a href="#sinavlar" class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-brand-50/50 transition">Online Sınavlar</a>
+                    <a href="#denemeler" class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-brand-50/50 transition">Deneme Sınavları</a>
+                    <a href="#yorumlar" class="px-3 py-2 rounded-lg hover:text-brand-600 hover:bg-brand-50/50 transition">Veli/Öğrenci Görüşleri</a>
+                </nav>
+
+                <!-- Action Button & Mobile Menu Toggle -->
+                <div class="flex items-center gap-3">
+                    <button onclick="scrollToSection('soru-sor')" class="hidden sm:inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-brand-500/20 hover:shadow-lg transition">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Soru Gönder</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2">
+            <a href="#tymm-mufredat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-medium hover:bg-slate-100">TYMM Müfredatı</a>
+            <a href="#videolar" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Konu Anlatım Videoları</a>
+            <a href="#sinavlar" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Online Sınavlar</a>
+            <a href="#denemeler" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Deneme Sınavları</a>
+            <a href="#yorumlar" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Veli ve Öğrenci Yorumları</a>
+            <a href="#soru-sor" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg text-white bg-brand-600 text-center font-medium">Soru Gönder & İletişim</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-indigo-900 via-slate-900 to-slate-900 text-white py-16 lg:py-24 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-400/30 text-indigo-200 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold">
+                        <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+                        <span>Türkiye Yüzyılı Maarif Modeli Uyumlu Öğrenme</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Matematiği <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-indigo-200 to-indigo-400">Korkulan Değil, Sevilen</span> Ders Yapıyoruz!
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+                        6. Sınıf yeni müfredat matematik beceri temelli öğrenme süreçleri, video dersler, kavramsal akıl yürütme denemeleri ve anlık dönütlü online testlerle her öğrencimizin potansiyelini zirveye taşıyoruz.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#sinavlar" class="bg-amber-400 hover:bg-amber-300 text-slate-950 px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-amber-400/20 hover:scale-105 transition duration-200 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Hemen Sınav Çöz</span>
+                        </a>
+                        <a href="#videolar" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3.5 rounded-xl font-semibold backdrop-blur-sm hover:scale-105 transition duration-200 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play text-red-400"></i>
+                            <span>Ders Videoları</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800 text-center lg:text-left">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">7 Tema</div>
+                            <div class="text-xs text-slate-400 mt-1">Tam Müfredat Akışı</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-indigo-300">120+</div>
+                            <div class="text-xs text-slate-400 mt-1">Beceri Temelli Soru</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">%98</div>
+                            <div class="text-xs text-slate-400 mt-1">Veli & Öğrenci Memnuniyeti</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Profile Card -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 text-slate-800 shadow-2xl relative overflow-hidden border border-white/40">
+                        <div class="absolute -right-12 -top-12 w-36 h-36 bg-indigo-500/10 rounded-full"></div>
+                        <div class="flex items-center gap-5">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250" alt="Ahmet Öğretmen" class="w-20 h-20 rounded-2xl object-cover ring-4 ring-brand-500/20 shadow-md">
+                                <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-xs p-1 rounded-full border-2 border-white" title="Aktif Öğretmen">
+                                    <i class="fa-solid fa-check text-[10px]"></i>
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900">Ahmet Yılmaz</h3>
+                                <p class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Ortaokul Matematik Öğretmeni</p>
+                                <p class="text-xs text-slate-500 mt-0.5"><i class="fa-solid fa-award text-amber-500 mr-1"></i>12 Yıllık Tecrübe & TYMM Formatörü</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-100 text-sm text-slate-600 space-y-2">
+                            <p class="italic text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
+                                "Türkiye Yüzyılı Maarif Modeli ile matematik eğitiminde ezberi bir kenara bırakıyor; öğrencilerimize sorgulayan, çözüm üreten ve matematiği günlük hayatla bağdaştıran bir bakış açısı kazandırıyoruz."
+                            </p>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-2 gap-2 text-xs font-semibold">
+                            <div class="bg-brand-50 text-brand-700 p-2.5 rounded-xl flex items-center gap-2">
+                                <i class="fa-solid fa-book-open"></i>
+                                <span>6. Sınıf TYMM Kitabı</span>
+                            </div>
+                            <div class="bg-indigo-50 text-indigo-700 p-2.5 rounded-xl flex items-center gap-2">
+                                <i class="fa-solid fa-bullseye"></i>
+                                <span>Kavramsal Derinlik</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYMM MÜFREDAT VE TEMA REHBERİ -->
+    <section id="tymm-mufredat" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full border border-brand-200">Müfredat Yapısı</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">6. Sınıf TYMM Matematik Temaları</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">
+                    Milli Eğitim Bakanlığı Türkiye Yüzyılı Maarif Modeli 6. Sınıf Matematik ders kitabı içerik ve tema sıralaması.
+                </p>
+            </div>
+
+            <!-- Curriculum Tabs / Accordion Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tymmThemesContainer">
+                <!-- Dynamic Content via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- KONU ANLATIM VİDEOLARI SECTION -->
+    <section id="videolar" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-indigo-600 font-bold text-xs uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">Görsel Öğrenme</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Konu Anlatım Videoları</h2>
+                    <p class="text-slate-600 text-sm mt-1">TYMM 6. Sınıf ders kitabındaki temalara uygun özel ders anlatımları.</p>
+                </div>
+                <!-- Filter Buttons -->
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2" id="videoFilterBtns">
+                    <button onclick="filterVideos('all')" class="v-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white transition">Tümü</button>
+                    <button onclick="filterVideos('tema1')" class="v-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 transition">Tema 1: Çarpanlar</button>
+                    <button onclick="filterVideos('tema2')" class="v-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 transition">Tema 2: Bölünebilme</button>
+                    <button onclick="filterVideos('tema3')" class="v-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 transition">Tema 3: Kesirler</button>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="videoCardsGrid">
+                <!-- Video cards rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ONLINE SINAVLAR VE QUIZLER SECTION -->
+    <section id="sinavlar" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Anlık Dönüt ve Ölçme</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Interaktif Online Konu Testleri</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">
+                    Sınava girmeden önce kendinizi deneyin! Soruları çözün, anında puanınızı ve detaylı çözümlerinizi görün.
+                </p>
+            </div>
+
+            <!-- Interactive Quiz Engine Container -->
+            <div class="max-w-4xl mx-auto bg-slate-900 text-white rounded-3xl shadow-2xl overflow-hidden border border-slate-800">
+                <!-- Quiz Header Bar -->
+                <div class="bg-slate-800/80 px-6 py-4 border-b border-slate-700 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="quizTitleDisplay" class="font-bold text-sm sm:text-base text-amber-300">1. Tema: Çarpanlar ve Katlar Hızlı Test</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs sm:text-sm font-medium">
+                        <div class="bg-slate-700/80 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                            <i class="fa-regular fa-clock text-amber-400"></i>
+                            <span id="quizTimer">10:00</span>
+                        </div>
+                        <div class="bg-slate-700/80 px-3 py-1.5 rounded-lg">
+                            Soru: <span id="currentQuestionNum" class="text-emerald-400 font-bold">1</span>/<span id="totalQuestionsNum">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Body -->
+                <div class="p-6 sm:p-8" id="quizBody">
+                    <!-- Dynamic Question Area -->
+                </div>
+
+                <!-- Quiz Footer Controls -->
+                <div class="bg-slate-800/50 px-6 py-4 border-t border-slate-700 flex items-center justify-between" id="quizFooter">
+                    <button id="prevQBtn" onclick="navigateQuestion(-1)" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Önceki
+                    </button>
+                    <button id="nextQBtn" onclick="navigateQuestion(1)" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-sm font-bold text-white transition shadow-lg shadow-brand-500/30">
+                        Sonraki <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DENEME SINAVLARI PORTAL SECTION -->
+    <section id="denemeler" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Kurumsal & Yazılı Hazırlık</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Deneme Sınavları ve Optik Form Simülasyonu</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">
+                    TYMM Beceri Temelli ve Açık Uçlu Soru Formatlarına Uygun 6. Sınıf Genel ve Konu Denemeleri.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Exam Download List -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-red-500"></i>
+                        <span>İndirilebilir PDF Deneme Sınavları</span>
+                    </h3>
+
+                    <div id="denemeListContainer" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Live Optic Simulation Box -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                            <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+                                <i class="fa-solid fa-square-poll-vertical text-brand-600"></i>
+                                <span>Optik Form Kodlama Simülatörü</span>
+                            </h4>
+                            <span class="text-[10px] bg-slate-100 font-bold text-slate-600 px-2 py-0.5 rounded">Hızlı Sonuç</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            Denemedeki cevaplarınızı optik forma işaretleyerek anında puanınızı ve kazanım analizini çıkarın.
+                        </p>
+
+                        <!-- Optic Questions Sample -->
+                        <div class="space-y-3 font-mono text-xs">
+                            <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl">
+                                <span class="font-bold text-slate-700">Soru 1:</span>
+                                <div class="flex gap-2">
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">A</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">B</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">C</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">D</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl">
+                                <span class="font-bold text-slate-700">Soru 2:</span>
+                                <div class="flex gap-2">
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">A</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">B</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">C</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">D</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl">
+                                <span class="font-bold text-slate-700">Soru 3:</span>
+                                <div class="flex gap-2">
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">A</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">B</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">C</button>
+                                    <button class="optic-btn w-7 h-7 rounded-full border border-slate-300 hover:bg-brand-500 hover:text-white font-bold transition">D</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <button onclick="calculateOpticResult()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator text-amber-400"></i>
+                            <span>Optik Formu Gönder & Değerlendir</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÖĞRENCİ VE VELİ YORUMLARI SECTION -->
+    <section id="yorumlar" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-purple-600 font-bold text-xs uppercase tracking-widest bg-purple-50 px-3 py-1 rounded-full border border-purple-200">Görüşler ve Deneyimler</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Öğrenci ve Veli Yorumları</h2>
+                    <p class="text-slate-600 text-sm mt-1">Sitemizi kullanan 6. sınıf öğrencilerimizin ve velilerimizin gerçek deneyimleri.</p>
+                </div>
+                <button onclick="openReviewModal()" class="mt-4 md:mt-0 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Siz de Yorum Yapın</span>
+                </button>
+            </div>
+
+            <!-- Review Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviewsContainer">
+                <!-- Dynamic Reviews Rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SORU GÖNDER / VELİ İLETİŞİM SECTION -->
+    <section id="soru-sor" class="py-16 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-brand-500/20 border border-brand-400/30 text-brand-300 px-3 py-1 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-comments"></i> 7/24 Öğrenci Desteği
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-white">Takıldığın Soruyu Gönder, Çözüm Cebine Gelsin!</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        6. Sınıf TYMM ders kitabından veya testlerden çözemediğin soruların fotoğrafını çekip yükleyebilir, öğretmenine doğrudan iletebilirsin.
+                    </p>
+
+                    <div class="space-y-4 pt-2 text-sm text-slate-300">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-amber-400 font-bold">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-xs sm:text-sm">Hızlı Yanıt Süresi</h4>
+                                <p class="text-xs text-slate-400">En geç 24 saat içerisinde detaylı çözüm açıklaması.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-emerald-400 font-bold">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-xs sm:text-sm">Birebir Veli Görüşmesi</h4>
+                                <p class="text-xs text-slate-400">Velilerimiz online randevu alarak öğrenci gelişimini takip edebilir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-800/80 p-6 sm:p-8 rounded-3xl border border-slate-700 shadow-2xl">
+                        <form id="questionForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Adınız Soyadınız *</label>
+                                    <input type="text" required placeholder="Örn: Zeynep Yılmaz" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Rolünüz *</label>
+                                    <select required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                        <option value="öğrenci">6. Sınıf Öğrencisi</option>
+                                        <option value="veli">Veli</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">İlgili TYMM Teması *</label>
+                                    <select required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                        <option value="1">1. Tema: Sayılar ve Nicelikler (1)</option>
+                                        <option value="2">2. Tema: İstatistiksel Araştırma</option>
+                                        <option value="3">3. Tema: Sayılar ve Nicelikler (2)</option>
+                                        <option value="4">4. Tema: Veriden Olasılığa</option>
+                                        <option value="5">5. Tema: Geometrik Şekiller</option>
+                                        <option value="6">6. Tema: Cebirsel Düşünme</option>
+                                        <option value="7">7. Tema: Geometrik Nicelikler</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">E-Posta veya Telefon</label>
+                                    <input type="text" required placeholder="İletişim bilgisi" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Mesajınız veya Sorunuz *</label>
+                                <textarea rows="3" required placeholder="Sorunuzu veya mesajınızı detaylıca yazınız..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Soru Görseli Yükle (İsteğe Bağlı)</label>
+                                <div class="border-2 border-dashed border-slate-700 hover:border-brand-500 rounded-xl p-4 text-center cursor-pointer transition bg-slate-900/50">
+                                    <i class="fa-solid fa-cloud-arrow-up text-slate-400 text-xl mb-1"></i>
+                                    <p class="text-xs text-slate-400">Dosya sürükleyin veya <span class="text-brand-400 font-semibold">gözatın</span></p>
+                                    <span class="text-[10px] text-slate-500 block mt-1">PNG, JPG veya PDF (Maks. 10MB)</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-500/20 transition duration-200 text-sm">
+                                Mesajı / Soruyu Gönder
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 text-xs py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-sm">
+                        π
+                    </div>
+                    <div>
+                        <span class="font-bold text-white text-sm block">Ahmet Yılmaz - Matematik Portalı</span>
+                        <span class="text-[11px] text-slate-500">Milli Eğitim Bakanlığı TYMM 6. Sınıf Müfredatı ile %100 Uyumlu</span>
+                    </div>
+                </div>
+                <p class="text-slate-500 text-center md:text-right">
+                    &copy; 2026 Matematik Atölyesi. Tüm Hakları Saklıdır. Türkiye Yüzyılı Maarif Modeli Destek Portalı.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REVIEW MODAL -->
+    <div id="reviewModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in">
+            <button onclick="closeReviewModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Yorum Yapın</h3>
+            <p class="text-xs text-slate-500 mb-6">Deneyimlerinizi diğer öğrenci ve velilerle paylaşın.</p>
+
+            <form onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Ad Soyad</label>
+                    <input type="text" id="revName" required placeholder="Örn: Mehmet Bey" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-brand-600">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Rol</label>
+                        <select id="revRole" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-brand-600">
+                            <option value="Veli">Veli</option>
+                            <option value="Öğrenci">Öğrenci</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Puanınız</label>
+                        <select id="revRating" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-brand-600">
+                            <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                            <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                            <option value="3">⭐⭐⭐ (3/5)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Yorumunuz</label>
+                    <textarea id="revComment" rows="3" required placeholder="Dersler, videolar veya portal hakkında görüşleriniz..." class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-brand-600"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-sm transition">
+                    Yorumu Yayınla
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CUSTOM NOTIFICATION CONTAINER -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-slate-700 hidden flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toastMsg" class="text-xs sm:text-sm font-medium">İşlem başarıyla tamamlandı.</span>
+    </div>
+
+    <script>
+        /* TYMM DATA STRUCTURES */
+        const tymmThemes = [
+            {
+                id: 1,
+                title: "1. TEMA: Sayılar ve Nicelikler (1)",
+                color: "indigo",
+                topics: [
+                    "Doğal Sayıların Çarpanları ve Katları",
+                    "2, 3, 4, 5, 6, 9 ve 10 ile Bölünebilme Kriterleri",
+                    "Asal Sayılar ve Asal Çarpanlar",
+                    "Ortak Katlar (EKOK) ve Ortak Bölenler (EBOB) Problemleri"
+                ],
+                badge: "38 Ders Saati"
+            },
+            {
+                id: 2,
+                title: "2. TEMA: İstatistiksel Araştırma Süreci",
+                color: "emerald",
+                topics: [
+                    "Araştırma Sorusu Oluşturma ve Veri Toplama",
+                    "Sıklık Tablosu ve Sütun Grafiği",
+                    "Verilerin Yorumlanması ve Çıkarım Yapma"
+                ],
+                badge: "24 Ders Saati"
+            },
+            {
+                id: 3,
+                title: "3. TEMA: Sayılar ve Nicelikler (2)",
+                color: "amber",
+                topics: [
+                    "Ondalık Gösterimleri Çözümleme",
+                    "Kesir ve Bölme İşlemi İlişkisi (Devirli Ondalık)",
+                    "Kesirlerle Dört İşlem Problemleri",
+                    "Uzunlık Ölçme Birimleri ve Çevre Hesaplama"
+                ],
+                badge: "38 Ders Saati"
+            },
+            {
+                id: 4,
+                title: "4. TEMA: Veriden Olasılığa",
+                color: "purple",
+                topics: [
+                    "Olayların Olma Olasılığı kavramı",
+                    "Deneysel ve Teorik Olasılık Karşılaştırması",
+                    "İmkânsız ve Kesin Olaylar"
+                ],
+                badge: "18 Ders Saati"
+            },
+            {
+                id: 5,
+                title: "5. TEMA: Geometrik Şekiller",
+                color: "blue",
+                topics: [
+                    "İki Paralel Doğrunun Bir Kesenle Oluşturduğu Açılar",
+                    "Üçgenlerin Açı Özellikleri",
+                    "Dörtgenler (Paralelkenar, Yamuk, Eşkenar Dörtgen) ve Özellikleri"
+                ],
+                badge: "20 Ders Saati"
+            },
+            {
+                id: 6,
+                title: "6. TEMA: Cebirsel Düşünme ve Değişimler",
+                color: "rose",
+                topics: [
+                    "Sayı ve Şekil Örüntülerinin Kuralını Bulma",
+                    "Cebirsel İfadelerin Anlamı ve Değer Hesaplama",
+                    "Basit Denklem Mantığı ve Problem Çözme"
+                ],
+                badge: "33 Ders Saati"
+            },
+            {
+                id: 7,
+                title: "7. TEMA: Geometrik Nicelikler",
+                color: "cyan",
+                topics: [
+                    "Paralelkenar ve Üçgenin Alan Bağıntıları",
+                    "Alan Ölçme Birimleri (m², cm²)",
+                    "Çemberin Çevresi ve Pi (π) Sayısı İlişkisi"
+                ],
+                badge: "33 Ders Saati"
+            }
+        ];
+
+        const videoData = [
+            {
+                id: 1,
+                tag: "tema1",
+                title: "Bir Doğal Sayının Çarpanları ve Katları (TYMM)",
+                duration: "14:20",
+                theme: "1. Tema",
+                views: "1.4k izlenme",
+                thumb: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=500"
+            },
+            {
+                id: 2,
+                tag: "tema2",
+                title: "2, 3, 5, 9 ve 10 ile Bölünebilme Kuralları Kolay Yöntem",
+                duration: "18:45",
+                theme: "1. Tema",
+                views: "2.1k izlenme",
+                thumb: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=500"
+            },
+            {
+                id: 3,
+                tag: "tema3",
+                title: "Kesirlerde Bölme İşlemi ve Mantığı",
+                duration: "16:10",
+                theme: "3. Tema",
+                views: "980 izlenme",
+                thumb: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&q=80&w=500"
+            }
+        ];
+
+        const quizQuestions = [
+            {
+                question: "1) 36 sayısının kaç tane farklı doğal sayı çarpanı (böleni) vardır?",
+                options: ["A) 6", "B) 8", "C) 9", "D) 12"],
+                correct: 2,
+                solution: "36'nın çarpanları: 1, 2, 3, 4, 6, 9, 12, 18, 36'dır. Toplam 9 tanedir."
+            },
+            {
+                question: "2) Rakamları farklı 4A5B dört basamaklı sayısı hem 5 hem de 9 ile tam bölünebiliyorsa ve A sayısı B'den büyükse, A kaçtır?",
+                options: ["A) 0", "B) 4", "C) 8", "D) 9"],
+                correct: 0,
+                solution: "5 ile bölünme için B = 0 veya 5 olmalı. Rakamları farklı dediği için B=0 alınır. 4A50 sayısı 9 ile tam bölünüyorsa 4+A+5+0 = 9+A -> A=0 veya 9 olur. A=0 B=0 eşit olamaz, A=9 durumunda A=9, B=0 olur."
+            },
+            {
+                question: "3) Aşağıdaki sayılardan hangisi asal sayıdır?",
+                options: ["A) 21", "B) 37", "C) 49", "D) 91"],
+                correct: 1,
+                solution: "21=3x7, 49=7x7, 91=7x13 bileşik sayılardır. 37 sadece 1'e ve kendisine bölünür."
+            },
+            {
+                question: "4) Bir sınıftaki öğrenciler 6'şar ve 8'er sayıldığında her seferinde 3 öğrenci artmaktadır. Sınıf mevcudu 40'tan fazla olduğuna göre en az kaçtır?",
+                options: ["A) 45", "B) 48", "C) 51", "D) 54"],
+                correct: 2,
+                solution: "EKOK(6,8) = 24. 40'tan büyük katı 48'dir. 3 artan olduğu için 48 + 3 = 51 olur."
+            },
+            {
+                question: "5) Devirli ondalık gösterimi 0,333... olan kesir aşağıdakilerden hangisine eşittir?",
+                options: ["A) 1/2", "B) 1/3", "C) 3/10", "D) 3/100"],
+                correct: 1,
+                solution: "1 sayısı 3'e bölündüğünde 0,333... sonsuz devirli ondalık açılımı elde edilir."
+            }
+        ];
+
+        const denemeFiles = [
+            { title: "6. Sınıf TYMM 1. Dönem 1. Yazılıya Hazırlık Denemesi", date: "Ekim 2026", questions: "20 Soru", format: "PDF + Optik", tag: "Popüler" },
+            { title: "Tema 1 & Tema 2 Beceri Temelli Tarama Denemesi", date: "Kasım 2026", questions: "15 Soru", format: "PDF Çözümlü", tag: "Müfredat" },
+            { title: "6. Sınıf Kurumsal Genel Deneme Sınavı - 1", date: "Aralık 2026", questions: "20 Soru", format: "Tam Optik", tag: "Yeni" }
+        ];
+
+        let reviewsData = [
+            { name: "Ayşe T. (Veli)", role: "Veli", rating: "⭐⭐⭐⭐⭐", text: "Ahmet Öğretmen'in TYMM müfredatına hakimiyeti harika. Oğlumun matematik notları 65'ten 90'a yükseldi!" },
+            { name: "Mert K.", role: "Öğrenci", rating: "⭐⭐⭐⭐⭐", text: "Sitedeki video dersler ve takıldığım soruları gönderebilmek çok işime yarıyor. Çok anlaşılır anlatıyor." },
+            { name: "Selin B. (Veli)", role: "Veli", rating: "⭐⭐⭐⭐⭐", text: "Yeni müfredat beceri temelli sorular için bulabileceğiniz en kapsamlı portal. Emekleriniz için teşekkürler hocam." }
+        ];
+
+        /* STATE VARIABLES */
+        let currentQuizIndex = 0;
+        let userQuizAnswers = Array(quizQuestions.length).fill(null);
+        let quizSubmitted = false;
+
+        /* INITIALIZATION */
+        window.onload = function() {
+            renderThemes();
+            renderVideos(videoData);
+            renderQuizQuestion();
+            renderDenemeler();
+            renderReviews();
+        };
+
+        /* RENDER FUNCTIONS */
+        function renderThemes() {
+            const container = document.getElementById('tymmThemesContainer');
+            container.innerHTML = tymmThemes.map(t => `
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition group">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-${t.color}-700 bg-${t.color}-50 px-3 py-1 rounded-full border border-${t.color}-200">
+                            ${t.badge}
+                        </span>
+                        <i class="fa-solid fa-book-bookmark text-slate-300 group-hover:text-brand-600 transition"></i>
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-base mb-3 leading-snug">${t.title}</h3>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        ${t.topics.map(sub => `
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-[10px] mt-0.5"></i>
+                                <span>${sub}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function renderVideos(videos) {
+            const grid = document.getElementById('videoCardsGrid');
+            grid.innerHTML = videos.map(v => `
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition group">
+                    <div class="relative overflow-hidden aspect-video bg-slate-900">
+                        <img src="${v.thumb}" alt="${v.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 opacity-90">
+                        <div class="absolute inset-0 bg-slate-950/30 flex items-center justify-center">
+                            <button onclick="playVideoModal('${v.title}')" class="w-12 h-12 rounded-full bg-white/90 hover:bg-white text-brand-600 flex items-center justify-center shadow-xl hover:scale-110 transition">
+                                <i class="fa-solid fa-play text-lg ml-0.5"></i>
+                            </button>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">
+                            ${v.duration}
+                        </span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                            <span class="font-semibold text-brand-600">${v.theme}</span>
+                            <span><i class="fa-regular fa-eye mr-1"></i>${v.views}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm line-clamp-2 leading-snug group-hover:text-brand-600 transition">${v.title}</h4>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <button onclick="showToast('Ders notu indirildi.')" class="text-slate-600 hover:text-brand-600 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-file-arrow-down text-brand-500"></i> Ders Notu PDF
+                            </button>
+                            <button onclick="playVideoModal('${v.title}')" class="text-brand-600 font-bold hover:underline">İzle &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterVideos(tag) {
+            document.querySelectorAll('.v-filter-btn').forEach(b => {
+                b.classList.remove('bg-brand-600', 'text-white');
+                b.classList.add('bg-white', 'text-slate-700');
+            });
+            event.target.classList.remove('bg-white', 'text-slate-700');
+            event.target.classList.add('bg-brand-600', 'text-white');
+
+            if(tag === 'all') renderVideos(videoData);
+            else renderVideos(videoData.filter(v => v.tag === tag));
+        }
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[currentQuizIndex];
+            document.getElementById('currentQuestionNum').innerText = currentQuizIndex + 1;
+            document.getElementById('totalQuestionsNum').innerText = quizQuestions.length;
+
+            const body = document.getElementById('quizBody');
+
+            let optionsHtml = q.options.map((opt, idx) => {
+                const isSelected = userQuizAnswers[currentQuizIndex] === idx;
+                let btnStyle = "bg-slate-800 border-slate-700 text-slate-200 hover:border-slate-500";
+
+                if (isSelected) {
+                    btnStyle = "bg-brand-600/30 border-brand-500 text-white font-bold";
+                }
+
+                if (quizSubmitted) {
+                    if (idx === q.correct) {
+                        btnStyle = "bg-emerald-600/30 border-emerald-500 text-emerald-200 font-bold";
+                    } else if (isSelected && idx !== q.correct) {
+                        btnStyle = "bg-rose-600/30 border-rose-500 text-rose-200 font-bold";
+                    }
+                }
+
+                return `
+                    <button onclick="selectAnswer(${idx})" ${quizSubmitted ? 'disabled' : ''} class="w-full text-left p-4 rounded-xl border transition ${btnStyle} flex items-center justify-between">
+                        <span>${opt}</span>
+                        ${isSelected ? '<i class="fa-solid fa-circle-check text-brand-400"></i>' : ''}
+                    </button>
+                `;
+            }).join('');
+
+            body.innerHTML = `
+                <div class="space-y-6">
+                    <h3 class="text-base sm:text-lg font-extrabold text-white leading-relaxed">${q.question}</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        ${optionsHtml}
+                    </div>
+
+                    ${quizSubmitted ? `
+                        <div class="mt-4 p-4 rounded-xl bg-slate-800 border border-slate-700 text-xs sm:text-sm text-amber-200">
+                            <strong><i class="fa-solid fa-lightbulb mr-1"></i> Çözüm Açıklaması:</strong>
+                            <p class="mt-1 text-slate-300 leading-relaxed">${q.solution}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Update Footer Buttons
+            document.getElementById('prevQBtn').disabled = currentQuizIndex === 0;
+
+            const nextBtn = document.getElementById('nextQBtn');
+            if (currentQuizIndex === quizQuestions.length - 1) {
+                nextBtn.innerHTML = quizSubmitted ? 'Test Tamamlandı' : 'Sınavı Bitir <i class="fa-solid fa-check ml-1"></i>';
+                nextBtn.onclick = quizSubmitted ? null : finishQuiz;
+            } else {
+                nextBtn.innerHTML = 'Sonraki <i class="fa-solid fa-arrow-right ml-1"></i>';
+                nextBtn.onclick = () => navigateQuestion(1);
+            }
+        }
+
+        function selectAnswer(idx) {
+            userQuizAnswers[currentQuizIndex] = idx;
+            renderQuizQuestion();
+        }
+
+        function navigateQuestion(direction) {
+            currentQuizIndex += direction;
+            renderQuizQuestion();
+        }
+
+        function finishQuiz() {
+            quizSubmitted = true;
+            let score = 0;
+            userQuizAnswers.forEach((ans, i) => {
+                if (ans === quizQuestions[i].correct) score += 20;
+            });
+
+            showToast(`Sınav Bitti! Puanınız: ${score}/100`);
+            renderQuizQuestion();
+        }
+
+        function renderDenemeler() {
+            const container = document.getElementById('denemeListContainer');
+            container.innerHTML = denemeFiles.map(d => `
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-sm">${d.title}</h4>
+                            <div class="flex items-center gap-3 text-[11px] text-slate-500 mt-1">
+                                <span><i class="fa-regular fa-calendar mr-1"></i>${d.date}</span>
+                                <span><i class="fa-solid fa-list-check mr-1"></i>${d.questions}</span>
+                                <span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded text-[10px] font-extrabold">${d.tag}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="showToast('Deneme sınavı PDF olarak indiriliyor...')" class="w-full sm:w-auto bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 font-bold text-xs px-4 py-2 rounded-xl transition flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-download"></i> Indir
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = reviewsData.map(r => `
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/70 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-amber-500">${r.rating}</span>
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full">${r.role}</span>
+                        </div>
+                        <p class="text-slate-700 text-xs sm:text-sm italic leading-relaxed">"${r.text}"</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-200/60 font-bold text-xs text-slate-900">
+                        ${r.name}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* INTERACTION HANDLERS */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobileMenuBtn').onclick = toggleMobileMenu;
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function playVideoModal(title) {
+            showToast(`"${title}" videosu oynatılıyor...`);
+        }
+
+        function calculateOpticResult() {
+            showToast("Optik form değerlendirildi: 3 Doğru, 0 Yanlış. Tebrikler!");
+        }
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.add('hidden');
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('revName').value;
+            const role = document.getElementById('revRole').value;
+            const ratingVal = document.getElementById('revRating').value;
+            const comment = document.getElementById('revComment').value;
+
+            let stars = "⭐⭐⭐⭐⭐";
+            if(ratingVal === "4") stars = "⭐⭐⭐⭐";
+            if(ratingVal === "3") stars = "⭐⭐⭐";
+
+            reviewsData.unshift({
+                name: name,
+                role: role,
+                rating: stars,
+                text: comment
+            });
+
+            renderReviews();
+            closeReviewModal();
+            showToast("Yorumunuz başarıyla eklendi, teşekkür ederiz!");
+            e.target.reset();
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("Mesajınız ve sorunuz öğretmenimize iletildi.");
+            e.target.reset();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = msg;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
